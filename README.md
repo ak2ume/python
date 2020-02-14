@@ -1,11 +1,14 @@
 # python
 python source codes
 
-* applications
+## applications
+
 application code (including test code).
 
-* core
+## core
+
 common functional code such as libraries, utilities.
 
-* projects
+## projects
+
 Spyder projects.
