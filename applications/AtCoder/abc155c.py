@@ -2,7 +2,7 @@
 
 def abc155c(num, s):
     appearance_dict = {} # 文字列:出現回数
-    array = [[] for _ in range(num)] # (出現回数-1)をindexに文字列を配列で管理する
+    array = [[] for _ in range(num)] # (出現回数-1)をindexにして文字列を配列で管理する
     max_cnt = 0
 
     for i in range(0, num):
@@ -20,8 +20,8 @@ def abc155c(num, s):
         if( target_array != [] ):
             for sort_idx in range(0, len(target_array)):
                 if( target < target_array[sort_idx] ): 
-                    insert_idx = sort_idx
                     break
+                insert_idx += 1
         array[cnt].insert(insert_idx, target)
 
         if( cnt > max_cnt ) : max_cnt = cnt
