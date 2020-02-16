@@ -1,25 +1,20 @@
 # -*- coding: utf-8 -*-
 
 def abc155c(num, s):
-    array = [[] for _ in range(2*(10**5))]
+    appearance_dict = {} # 文字列:出現回数
+    array = [[] for _ in range(num)] # (出現回数-1)をindexに文字列を配列で管理する
     max_cnt = 0
 
     for i in range(0, num):
         target = s[i]
         cnt = 0 # appearance count
-        iter_num = 0
-        # array内で一致する文字列を見つける
-        for iter in array:
-            iter_num += 1
-            for string in iter:
-                if( target == string ):
-                    cnt = iter_num
-                    break
-            if( cnt != 0 ): break
 
-        if( cnt != 0 ):
+        if( target in appearance_dict ):
+            cnt = appearance_dict[target]
             array[cnt-1].remove(target)
-        # sortしながらリスト追加する
+        appearance_dict[target] = cnt+1
+
+        # sortしながら配列に追加する
         insert_idx = 0
         target_array = array[cnt]
         if( target_array != [] ):
@@ -37,8 +32,8 @@ def abc155c(num, s):
 # main
 if(__name__ == '__main__'):
     # input
-    s = [None for _ in range(2*(10**5))]
     num = int(input())
+    s = [None for _ in range(num)]
     for i in range(0, num):
         s[i] = input()
 
