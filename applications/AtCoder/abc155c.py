@@ -25,15 +25,16 @@ def abc155c(num, s):
 
         if target in appearance_dict :
             cnt = appearance_dict[target]
-            array[cnt - 1].remove(target)
         appearance_dict[target] = cnt + 1
 
         # 出現回数最大のときのみ2分探索でsortしながら配列に追加する
         insert_idx = 0
-        if cnt == max_cnt:
-            if array[cnt]:
+        if array[cnt]:
+            if cnt == max_cnt:
                 insert_idx = calc_insert_index(array[cnt], target, 0, len(array[cnt])-1)
-        array[cnt].insert(insert_idx, target)
+                array[cnt].insert(insert_idx, target)
+        else:
+            array[cnt].append(target)
 
         if cnt > max_cnt:
             max_cnt = cnt
@@ -45,10 +46,10 @@ def abc155c(num, s):
 if __name__ == '__main__' :
     # input
     num = int(input())
-    s = [None for _ in range(num)]
+    s = []
     for i in range(0, num):
-        s[i] = input()
-
+        s.append(input())
+        
     ans = abc155c(num, s)
 
     # output
