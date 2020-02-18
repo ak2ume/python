@@ -1,18 +1,19 @@
 # -*- coding: utf-8 -*-
 
-def calc_insert_index(array, target, left, right):
-    if left == right:
-        if target < array[left]:
-            return left
-        else:
-            return left + 1
-    else:
+def calc_insert_index(array, target, arg_left, arg_right):
+    left = arg_left
+    right = arg_right
+    while left != right:
         bound = (left + right) >> 1
         if target < array[bound]:
-            return calc_insert_index(array, target, left, bound)
+            right = bound
         else:
-            return calc_insert_index(array, target, bound+1, right)
+            left = bound + 1
 
+    if target < array[left]:
+        return left
+    else:
+        return left + 1
 
 def abc155c(num, s):
     appearance_dict = {} # 文字列:出現回数
