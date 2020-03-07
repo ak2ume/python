@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 def abc158d(s_init, n, query):
-    ans = s_init
+    head = ""
+    tail = ""
     reverse = 0
     for i in range(n):
         tgt = query[i]
@@ -10,22 +11,22 @@ def abc158d(s_init, n, query):
         elif tgt[0] == "2":
             if tgt[1] == "1":
                 if reverse == 0:
-                    ans = tgt[2] + ans
+                    head += tgt[2]
                 else:
-                    ans = ans + tgt[2]
+                    tail += tgt[2]
             elif tgt[1] == "2":
                 if reverse == 0:
-                    ans = ans + tgt[2]
+                    tail += tgt[2]
                 else:
-                    ans = tgt[2] + ans
+                    head += tgt[2]
             else:
                 print("invalid query!!:" + str(tgt[0]) + str(tgt[1]))
         else:
             print("invalid query!!:" + str(tgt[0]))
     if reverse == 0:
-        return ans
+        return head[::-1] + s_init + tail
     else:
-        return ans[::-1]
+        return tail[::-1] + s_init[::-1] + head
 
 ###
 # main
