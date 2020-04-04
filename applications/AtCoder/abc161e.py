@@ -26,7 +26,7 @@ def abc161e(n, k, c, s):
             continue
         else:
             num_cluster_b += 1
-            end.insert(0, cursor)
+            end.append(cursor)
             cursor -= c+1
 
     if k < num_cluster_b:
@@ -35,7 +35,7 @@ def abc161e(n, k, c, s):
     ans = []
     if num_cluster_b < num_cluster_f:
         num_cluster_f = num_cluster_b
-    for s, e in zip(start, end):
+    for s, e in zip(start, end[::-1]):
         if s == e:
             ans.append(s+1)
 
