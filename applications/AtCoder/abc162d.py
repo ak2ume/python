@@ -26,7 +26,11 @@ def abc162d(n, s):
         min2_arr = b_arr
         max_arr = r_arr
 
-    ans = 0
+    max_dict = dict()
+    for elem in max_arr:
+        max_dict[elem] = 1
+
+    except_num = 0
     for r_i in min1_arr:
         for g_i in min2_arr:
             min_i = r_i
@@ -38,18 +42,17 @@ def abc162d(n, s):
             minmin = min_i - diff
             maxmax = max_i + diff
             exists_central = (max_i + min_i) % 2
-            central = (max_i + min_i) / 2
 
-            ans += len(max_arr)
-
-            if minmin in max_arr:
-                ans -= 1
-            if maxmax in max_arr:
-                ans -= 1
+            if minmin in max_dict:
+                except_num += 1
+            if maxmax in max_dict:
+                except_num += 1
             if exists_central == 0:
-                if central in max_arr:
-                    ans -= 1
+                central = (max_i + min_i) / 2
+                if central in max_dict:
+                    except_num += 1
 
+    ans = len(r_arr) * len(g_arr) * len(b_arr) - except_num
     return ans
 
 ###
